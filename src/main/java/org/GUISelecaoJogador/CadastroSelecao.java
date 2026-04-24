@@ -70,7 +70,6 @@ public class CadastroSelecao extends javax.swing.JPanel {
 
         TabelaSelecaoJog.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Romário",  new Integer(10), "MEIA"},
                 {null, null, ""},
                 {null, null, null},
                 {null, null, null},
