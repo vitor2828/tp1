@@ -10,6 +10,7 @@ import javax.swing.SwingUtilities;
 import org.example.selecaoJogador.GUI.*;
 import org.example.partidas.telas.*;
 import org.example.estadioArbitragem.*;
+import org.example.ingressos.*;
 
 
 /**
@@ -52,6 +53,9 @@ public class TelaInicial extends javax.swing.JFrame {
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,6 +112,19 @@ public class TelaInicial extends javax.swing.JFrame {
         jMenuBar1.add(jMenu5);
 
         jMenu7.setText("Públicos/Ingressos");
+
+        jMenuItem4.setText("Comprar ingresso...");
+        jMenuItem4.addActionListener(this::jMenuItem4ActionPerformed);
+        jMenu7.add(jMenuItem4);
+
+        jMenuItem11.setText("Controle de público...");
+        jMenuItem11.addActionListener(this::jMenuItem11ActionPerformed);
+        jMenu7.add(jMenuItem11);
+
+        jMenuItem12.setText("Relatórios financeiros...");
+        jMenuItem12.addActionListener(this::jMenuItem12ActionPerformed);
+        jMenu7.add(jMenuItem12);
+
         jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
@@ -204,6 +221,18 @@ public class TelaInicial extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        TelaIngresso.main(null);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        TelaControlePublico.main(null);
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        TelaRelatorioFinanceiro.main(null);
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -240,8 +269,11 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
