@@ -19,6 +19,7 @@ import org.example.partidas.SemiFinal;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
+import java.time.LocalDate;
 import org.example.estadioArbitragem.Estadio;
 import org.example.partidas.JsonUtil;
 
@@ -29,12 +30,47 @@ public class Partida extends javax.swing.JFrame {
     private PartidaCopa partidaAtual;
     private PersistenciaUsuario persistencia;
     
+        private boolean validarData(String data) {
+
+        try {
+
+            java.time.format.DateTimeFormatter formatter =
+                    java.time.format.DateTimeFormatter.ofPattern("dd/MM/uuuu")
+                            .withResolverStyle(java.time.format.ResolverStyle.STRICT);
+
+            java.time.LocalDate.parse(data,formatter);
+
+            return true;
+
+        } catch (Exception e) {
+
+            return false;
+        }
+    }
+        
+        private boolean validarHorario(String horario) {
+
+       try {
+
+           java.time.format.DateTimeFormatter formatter =
+                   java.time.format.DateTimeFormatter.ofPattern("HH:mm");
+
+           java.time.LocalTime.parse( horario, formatter);
+
+           return true;
+
+       } catch (Exception e) {
+
+           return false;
+       }
+   }
+    
     private int gerarNumeroPartida() {
 
     return (int)
             (System.currentTimeMillis()
             % 1000000);
-}
+    }
     
     private void carregarEstadios() {
 
@@ -281,8 +317,10 @@ public class Partida extends javax.swing.JFrame {
         cbFase1.addActionListener(this::cbFase1ActionPerformed);
 
         cbSelecao1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSelecao1.addActionListener(this::cbSelecao1ActionPerformed);
 
         cbSelecao2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbSelecao2.addActionListener(this::cbSelecao2ActionPerformed);
 
         cbEstadio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -537,6 +575,7 @@ public class Partida extends javax.swing.JFrame {
 
             return;
         }
+        
 
         int gols1 =
                 Integer.parseInt(
@@ -555,6 +594,15 @@ public class Partida extends javax.swing.JFrame {
 
         boolean eliminatoria =
                 !nomeFase.equals("GRUPOS");
+        
+        if (gols1 < 0 || gols2 < 0) {
+
+            JOptionPane.showMessageDialog(
+                this,
+                "Quantidade de gols inválida.");
+
+        return;
+        }
 
         if (eliminatoria && gols1 == gols2) {
 
@@ -607,11 +655,29 @@ public class Partida extends javax.swing.JFrame {
     private void Salvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Salvar1ActionPerformed
 
     try {
+        
+        String data =
+        txtData.getText();
 
-        String faseSelecionada =
-                cbFase1
-                .getSelectedItem()
-                .toString();
+    if (!validarData(data)) {
+
+        throw new Exception(
+                "Data inválida. Utilize dd/MM/yyyy.");
+    }
+
+    String horario =
+            txtHorario.getText();
+
+    if (!validarHorario(horario)) {
+
+        throw new Exception(
+                "Horário inválido. Utilize HH:mm.");
+    }
+
+    String faseSelecionada =
+            cbFase1
+            .getSelectedItem()
+            .toString();
         
            if (faseSelecionada.equals("OITAVAS")) {
 
@@ -989,6 +1055,14 @@ public class Partida extends javax.swing.JFrame {
                     e.getMessage());
         }
     }//GEN-LAST:event_btnGerarClassificadosActionPerformed
+
+    private void cbSelecao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSelecao1ActionPerformed
+
+    }//GEN-LAST:event_cbSelecao1ActionPerformed
+
+    private void cbSelecao2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSelecao2ActionPerformed
+
+    }//GEN-LAST:event_cbSelecao2ActionPerformed
 
     /**
      * @param args the command line arguments
