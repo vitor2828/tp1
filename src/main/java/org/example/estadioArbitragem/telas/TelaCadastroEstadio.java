@@ -257,7 +257,7 @@ public class TelaCadastroEstadio extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(rootPane, "Selecione um estádio na tabela para editar.");
                         return;
                     }
-                    int linhaReal = tabelaEstadios.convertRowIndexToView(linhaVisual);
+                    int linhaReal = tabelaEstadios.convertRowIndexToModel(linhaVisual);
                     organiza.EditarEstadio(WIDTH, linhaReal, nome, localizacao, capacidade, dtmTabela);
                     JOptionPane.showMessageDialog(rootPane, "Atualizado com sucesso!");
                     
@@ -308,7 +308,7 @@ public class TelaCadastroEstadio extends javax.swing.JFrame {
 
             if(op == JOptionPane.YES_OPTION){
                 try{
-                    int indexReal = tabelaEstadios.convertColumnIndexToModel(linhaSelecionada);
+                    int indexReal = tabelaEstadios.convertRowIndexToModel(linhaSelecionada);
                     DefaultTableModel dtmTabela = (DefaultTableModel) tabelaEstadios.getModel();
                     OrganizaEstadio organiza = new OrganizaEstadio();
                     organiza.ExcluirEstadio(linhaSelecionada, indexReal, dtmTabela);
@@ -360,22 +360,22 @@ public class TelaCadastroEstadio extends javax.swing.JFrame {
         txtCapacidadeEst.setEnabled(true);
     }
     
-    private void atualizarArquivoJSON(){
-        DefaultTableModel modelo = (DefaultTableModel) tabelaEstadios.getModel();
-        java.util.List<Estadio> listaParaSalvar = new java.util.ArrayList<>();
-        
-        for(int i = 0; i < modelo.getRowCount(); i++){
-            String nome = modelo.getValueAt(i, 0).toString();
-            String localizacao = modelo.getValueAt(i, 1).toString();
-            int capacidade = Integer.parseInt(modelo.getValueAt(i, 2).toString());
-            
-            listaParaSalvar.add(new Estadio(nome, localizacao, capacidade));
-            
-        }
-        
-        GerenciadorEstadioJSON gejson = new GerenciadorEstadioJSON();
-        gejson.salvarEstadios(listaParaSalvar);
-    }
+//    private void atualizarArquivoJSON(){
+//        DefaultTableModel modelo = (DefaultTableModel) tabelaEstadios.getModel();
+//        java.util.List<Estadio> listaParaSalvar = new java.util.ArrayList<>();
+//        
+//        for(int i = 0; i < modelo.getRowCount(); i++){
+//            String nome = modelo.getValueAt(i, 0).toString();
+//            String localizacao = modelo.getValueAt(i, 1).toString();
+//            int capacidade = Integer.parseInt(modelo.getValueAt(i, 2).toString());
+//            
+//            listaParaSalvar.add(new Estadio(nome, localizacao, capacidade));
+//            
+//        }
+//        
+//        GerenciadorEstadioJSON gejson = new GerenciadorEstadioJSON();
+//        gejson.salvarEstadios(listaParaSalvar);
+//    }
     /**
      * @param args the command line arguments
      */

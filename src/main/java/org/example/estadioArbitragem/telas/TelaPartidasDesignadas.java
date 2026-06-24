@@ -57,7 +57,7 @@ public class TelaPartidasDesignadas extends javax.swing.JFrame {
             for(PartidaCopa partida : todasAsPartidas){
                 String arbitroDaPartida = partida.getArbitro();
                 
-                if(arbitroDaPartida != null && arbitroDaPartida.contains(nomeArbitroLogado)){
+                if(arbitroDaPartida != null && arbitroDaPartida.equals(nomeArbitroLogado)){
                     String fase = partida.getFase();
                     String confronto = partida.getSelecao1() + " x " + partida.getSelecao2();
                     String data = partida.getData();
