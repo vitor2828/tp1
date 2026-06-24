@@ -122,5 +122,8 @@ public abstract class Fase extends Permissao {
         return todas;
     }
         
+    public abstract void excluirPartida(int numeroPartida)
+        throws Exception;
+        
     
 }
