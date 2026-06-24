@@ -58,6 +58,23 @@ public class FaseGrupos extends Fase {
                                 List<PartidaCopa>>() {
                         });
     }
+    
+    @Override
+    public void excluirPartida(
+            int numeroPartida)
+            throws Exception {
+
+        List<PartidaCopa> partidas =
+                listarPartidas();
+
+        partidas.removeIf(
+                p -> p.getNumero()
+                        == numeroPartida);
+
+        JsonUtil.salvar(
+                arquivoPartidas,
+                partidas);
+    }
 
     @Override
     public void registrarResultado(

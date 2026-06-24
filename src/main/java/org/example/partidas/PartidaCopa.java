@@ -2,6 +2,8 @@ package org.example.partidas;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.ArrayList;
+import java.util.List;
 import org.example.administracao.Permissao;
 import org.example.jogadorselecao.Selecao;
 
@@ -144,5 +146,51 @@ public void setSelecao2(String selecao2) {
     @JsonIgnore
     public String getNome() {
         return "PARTIDA_COPA";
+    }
+    
+    public static List<PartidaCopa> pesquisarPartidas(
+            List<PartidaCopa> partidas,
+            String numero,
+            String selecao,
+            String arbitro) {
+
+        List<PartidaCopa> resultado =
+                new ArrayList<>();
+
+        for (PartidaCopa p : partidas) {
+
+            boolean atende = true;
+
+            if (!numero.isBlank()) {
+
+                atende &= String.valueOf(
+                        p.getNumero())
+                        .contains(numero);
+            }
+
+            if (!selecao.isBlank()) {
+
+                atende &= p.getSelecao1()
+                        .equalsIgnoreCase(selecao)
+
+                        ||
+
+                        p.getSelecao2()
+                        .equalsIgnoreCase(selecao);
+            }
+
+            if (!arbitro.isBlank()) {
+
+                atende &= p.getArbitro()
+                        .equalsIgnoreCase(arbitro);
+            }
+
+            if (atende) {
+
+                resultado.add(p);
+            }
+        }
+
+        return resultado;
     }
 }

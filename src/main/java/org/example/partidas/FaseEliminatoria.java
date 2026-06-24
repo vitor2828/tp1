@@ -78,6 +78,23 @@ public abstract class FaseEliminatoria extends Fase {
                 arquivoPartidas,
                 partidas);
     }
+    
+    @Override
+    public void excluirPartida(
+            int numeroPartida)
+            throws Exception {
+
+        List<PartidaCopa> partidas =
+                listarPartidas();
+
+        partidas.removeIf(
+                p -> p.getNumero()
+                        == numeroPartida);
+
+        JsonUtil.salvar(
+                arquivoPartidas,
+                partidas);
+    }
 
     @Override
     public void gerarClassificados()

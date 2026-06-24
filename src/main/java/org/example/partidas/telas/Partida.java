@@ -281,6 +281,7 @@ public class Partida extends javax.swing.JFrame {
         cbPenaltis = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtConsulta = new javax.swing.JTextArea();
@@ -435,6 +436,9 @@ public class Partida extends javax.swing.JFrame {
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
+        btnExcluir.setText("Excluir Partida");
+        btnExcluir.addActionListener(this::btnExcluirActionPerformed);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -448,17 +452,20 @@ public class Partida extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel12)
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                                            .addComponent(jLabel11)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(txtGols2))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(btnBuscar)
-                                                .addComponent(jLabel10))
-                                            .addGap(18, 18, 18)
-                                            .addComponent(txtGols1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel11)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(txtGols2))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(btnBuscar)
+                                                    .addComponent(jLabel10))
+                                                .addGap(18, 18, 18)
+                                                .addComponent(txtGols1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(13, 13, 13)
+                                        .addComponent(btnExcluir))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addGap(117, 117, 117)
@@ -488,7 +495,9 @@ public class Partida extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNumeroPartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnBuscar)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBuscar)
+                    .addComponent(btnExcluir))
                 .addGap(1, 1, 1)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
@@ -1064,6 +1073,28 @@ public class Partida extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cbSelecao2ActionPerformed
 
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+    try {
+
+        int numeroPartida =
+                Integer.parseInt(
+                        txtNumeroPartida.getText());
+
+        faseAtual.excluirPartida(
+                numeroPartida);
+
+        JOptionPane.showMessageDialog(
+                this,
+                "Partida excluída com sucesso!");
+
+    } catch (Exception e) {
+
+        JOptionPane.showMessageDialog(
+                this,
+                e.getMessage());
+    }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1094,6 +1125,7 @@ public class Partida extends javax.swing.JFrame {
     private javax.swing.JButton Salvar1;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnGerarClassificados;
     private javax.swing.JButton btnResultado;
     private javax.swing.JComboBox<String> cbArbitro;
